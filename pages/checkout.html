@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - E-commerce</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <img src="../images/logo.png" alt="Logo">
+                <span>E-Shop</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="cart-icon" onclick="window.location.href='cart.html'">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 2L7 6H2v2h1l2 10h10l2-10h1V6h-5L15 2H9z"/>
+                    </svg>
+                    <span class="cart-badge" style="display: none;">0</span>
+                </div>
+                <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Checkout</h2>
+            
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--spacing-lg);">
+                <!-- Checkout Form -->
+                <div>
+                    <div class="card" style="margin-bottom: var(--spacing-md);">
+                        <h3 style="margin-bottom: var(--spacing-md);">Shipping Information</h3>
+                        <form id="checkoutForm">
+                            <div class="form-group">
+                                <label for="fullName" class="form-label">Full Name</label>
+                                <input type="text" id="fullName" class="form-input" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" id="phone" class="form-input" placeholder="Enter your phone number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" id="address" class="form-input" placeholder="Street address" required>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-sm);">
+                                <div class="form-group">
+                                    <label for="city" class="form-label">City</label>
+                                    <input type="text" id="city" class="form-input" placeholder="City" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="postalCode" class="form-label">Postal Code</label>
+                                    <input type="text" id="postalCode" class="form-input" placeholder="Postal code" required>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card">
+                        <h3 style="margin-bottom: var(--spacing-md);">Payment Method</h3>
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center; gap: var(--spacing-sm); padding: var(--spacing-sm); border: 2px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; margin-bottom: var(--spacing-sm);">
+                                <input type="radio" name="payment" value="cash" checked style="width: auto;">
+                                <span>Cash on Delivery</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: var(--spacing-sm); padding: var(--spacing-sm); border: 2px solid var(--border); border-radius: var(--radius-sm); cursor: pointer;">
+                                <input type="radio" name="payment" value="card" style="width: auto;">
+                                <span>Credit/Debit Card</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div>
+                    <div class="cart-summary">
+                        <h3 style="margin-bottom: var(--spacing-md);">Order Summary</h3>
+                        <div id="orderItems">
+                            <!-- Order items will be loaded here -->
+                        </div>
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">৳0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping</span>
+                            <span>৳100</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Tax</span>
+                            <span id="tax">৳0</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span id="total">৳0</span>
+                        </div>
+                        <button type="submit" form="checkoutForm" class="btn btn-primary" style="width: 100%; margin-top: var(--spacing-md);" onclick="handleCheckout(event)">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <a href="#">Our Story</a>
+                <a href="#">Careers</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <a href="#">FAQ</a>
+                <a href="#">Shipping</a>
+                <a href="#">Returns</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 E-Shop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        function loadOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const orderItemsDiv = document.getElementById('orderItems');
+            
+            if (cart.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+            
+            orderItemsDiv.innerHTML = cart.map(item => `
+                <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-sm); padding-bottom: var(--spacing-sm); border-bottom: 1px solid var(--border);">
+                    <div>
+                        <div style="font-weight: 500;">${item.name}</div>
+                        <div style="font-size: 14px; color: var(--text-secondary);">Qty: ${item.quantity}</div>
+                    </div>
+                    <div style="font-weight: 600;">৳${(item.price * item.quantity).toLocaleString()}</div>
+                </div>
+            `).join('');
+            
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const tax = subtotal * 0.05;
+            const total = subtotal + tax + 100;
+            
+            document.getElementById('subtotal').textContent = `৳${subtotal.toLocaleString()}`;
+            document.getElementById('tax').textContent = `৳${tax.toLocaleString()}`;
+            document.getElementById('total').textContent = `৳${total.toLocaleString()}`;
+        }
+
+        function handleCheckout(event) {
+            event.preventDefault();
+            
+            if (validateForm('checkoutForm')) {
+                showNotification('Order placed successfully!', 'success');
+                localStorage.removeItem('cart');
+                setTimeout(() => {
+                    window.location.href = '../index.html';
+                }, 2000);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadOrderSummary();
+        });
+    </script>
+</body>
+</html>
